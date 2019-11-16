@@ -97,6 +97,15 @@ public class NoteRepositryImpl implements Note
 		currentSession.save(colab);
 		System.out.println("note saved");
 	}
+	
+	@Override
+	public List<NoteDetails> getNoteIdByTitle(String tittle) {
+	Session currentSession = entity.unwrap(Session.class);
+	String retrivequery="from NoteDetails WHERE tittle=:tittle";
+	Query query=currentSession.createQuery(retrivequery);
+	query.setParameter("tittle", tittle);
+	return query.getResultList();
+	}
 	/*
 	 * @Override public int sortingNotes(Long id) { Session session =
 	 * entity.unwrap(Session.class);

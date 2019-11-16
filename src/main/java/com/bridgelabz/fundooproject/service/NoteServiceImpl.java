@@ -41,7 +41,10 @@ public class NoteServiceImpl implements NoteServie {
 
 	@Autowired
 	private UserRepositry user;
-
+  
+	@Autowired
+	private ElasticSearchService elasticsearch;
+	
 	 @Autowired
 	 private colabService colabService;
 	
@@ -67,7 +70,10 @@ public class NoteServiceImpl implements NoteServie {
 
 			user.getNote().add(noteDetails);
 			noteRepositry.save(noteDetails);
-
+             List<NoteDetails> notes=noteRepositry.getNoteIdByTitle(noteDetails.getTittle());
+             System.out.println(notes.toString());
+               NoteDetails noteObject =notes.get(0);
+               elasticsearch.createNote(noteObject);
 			// redisTemplate.opsForValue().set(noteDetails.getTittle(),noteDetails.getDescription());
 		} else {
 			throw new UserException("User Not Exist");
@@ -344,18 +350,13 @@ public class NoteServiceImpl implements NoteServie {
 		return colabUser;
  }
 	
-	
-	
-	
-	
-	
-	
 	@Override
 	@Transactional
-	public List<NoteDetails> searchNotes(String token, String keyword, String field) {
-		long id = utils.parseToken(token);
-		// List<Note> notes= elasticService.search(keyword, field);
-		return null;
+	public List<NoteDetails> searchNotes(String token, String keyword, String field) 
+	{
+	long id = utils.parseToken(token);
+	List<NoteDetails> notes= elasticsearch.search(keyword, field);
+	return notes;
 	}
 
 }

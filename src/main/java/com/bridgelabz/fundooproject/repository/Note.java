@@ -26,5 +26,5 @@ public List<NoteDetails> fetchArchiveNotes(long userId);
 
 public void saveColab(Note colab);
 
-
+public List<NoteDetails> getNoteIdByTitle(String tittle);
 }

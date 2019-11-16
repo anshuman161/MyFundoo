@@ -110,4 +110,27 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 		}
 		return profileDocuments;
 	}
+	
+	
+	
+	
+	
+	@Override
+	public List<NoteDetails> search(String tittle, String description) {
+	SearchRequest searchRequest = new SearchRequest();
+	SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+	QueryBuilder queryBuilder = QueryBuilders.boolQuery()
+	.should(QueryBuilders.queryStringQuery(tittle).lenient(true).field("title")
+	.field("description"))
+	.should(QueryBuilders.queryStringQuery("*" + tittle + "*").lenient(true).field("title")
+	.field("description"));
+	searchRequest.source(searchSourceBuilder.query(queryBuilder));
+	SearchResponse response = new SearchResponse();
+	try {
+	response = client.search(searchRequest, RequestOptions.DEFAULT);
+	} catch (IOException e) {
+	e.printStackTrace();
+	}
+	return getSearchResult(response);
+	}
 }

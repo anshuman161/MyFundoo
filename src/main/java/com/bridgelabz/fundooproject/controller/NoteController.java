@@ -204,10 +204,13 @@ public class NoteController
 	
 	@PostMapping("/search")
 	public List<NoteDetails> searchNotes(@RequestHeader("token") String token, @RequestBody String titleordescription) {
-		String title = titleordescription;
-		String description = titleordescription;
-		return servie.searchNotes(token, title, description);
+	String tittle = titleordescription;
+	String description = titleordescription;
+	return servie.searchNotes(token, tittle, description);
 	}
+	
+	
+	
     
     
 }

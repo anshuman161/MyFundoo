@@ -13,4 +13,6 @@ public interface ElasticSearchService {
 	String deleteNote(NoteDetails note);
 
 	List<NoteDetails> searchNoteByData(String searchData);
+	
+	public List<NoteDetails> search(String tittle, String description); 
 }
