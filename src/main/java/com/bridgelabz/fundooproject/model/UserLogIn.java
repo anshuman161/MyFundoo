@@ -7,6 +7,9 @@ public class UserLogIn
 {
 private String email;
 private String password;
+public UserLogIn(String string, String string2) {
+	// TODO Auto-generated constructor stub
+}
 public String getEmail() {
 	return email;
 }

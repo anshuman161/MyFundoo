@@ -26,6 +26,16 @@ public class UserRepositry implements User
 		return (UserInformation) query.uniqueResult();          
 	}
 	@Override
+	public List<UserInformation> getListOfUser(String email) 
+	{
+		Session currentsession= entityManager.unwrap(Session.class);
+		Query query = currentsession.createQuery("from UserInformation where email=:email");
+		query.setParameter("email", email);
+		return query.getResultList();          
+	}
+	
+	
+	@Override
 	public void save(UserInformation userinfo) 
 	{
 		 entityManager.unwrap(Session.class).save(userinfo);

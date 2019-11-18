@@ -87,9 +87,9 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 		SearchRequest searchRequest = new SearchRequest();
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.should(QueryBuilders.queryStringQuery(searchData).lenient(true).field("noteTitle")
+				.should(QueryBuilders.queryStringQuery(searchData).lenient(true).field("tittle")
 						.field("description"))
-				.should(QueryBuilders.queryStringQuery("*" + searchData + "*").lenient(true).field("noteTitle")
+				.should(QueryBuilders.queryStringQuery("*" + searchData + "*").lenient(true).field("tittle")
 						.field("description"));
 		searchRequest.source(searchSourceBuilder.query(queryBuilder));
 		SearchResponse response = new SearchResponse();
@@ -120,9 +120,9 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 	SearchRequest searchRequest = new SearchRequest();
 	SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 	QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-	.should(QueryBuilders.queryStringQuery(tittle).lenient(true).field("title")
+	.should(QueryBuilders.queryStringQuery(tittle).lenient(true).field("tittle")
 	.field("description"))
-	.should(QueryBuilders.queryStringQuery("*" + tittle + "*").lenient(true).field("title")
+	.should(QueryBuilders.queryStringQuery("*" + tittle + "*").lenient(true).field("tittle")
 	.field("description"));
 	searchRequest.source(searchSourceBuilder.query(queryBuilder));
 	SearchResponse response = new SearchResponse();

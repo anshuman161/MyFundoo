@@ -16,4 +16,5 @@ public interface User
 	public boolean changePassword(UserResetPasswordDto password, Long userId);
     
 	public List<UserInformation> getListOfUsers(); 
+	public List<UserInformation> getListOfUser(String email); 
 }
