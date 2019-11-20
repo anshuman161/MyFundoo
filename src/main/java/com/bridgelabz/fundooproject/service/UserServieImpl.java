@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundooproject.exception.UserException;
+import com.bridgelabz.fundooproject.model.RabbitMqMessege;
 import com.bridgelabz.fundooproject.model.UserDto;
 import com.bridgelabz.fundooproject.model.UserInformation;
 import com.bridgelabz.fundooproject.model.UserLogIn;
@@ -56,7 +57,13 @@ public class UserServieImpl implements UserService
 				information.setVerified(false);
 				user.save(information);
 				String tokens = util.generateTokens(information.getUserId());
-				util.sendMail(userDto.getEmail(), "Email verifying", "http://localhost:8080/verify/" + tokens);
+				String url="http://localhost:8080/verify/";
+				RabbitMqMessege msg=new RabbitMqMessege();
+				msg.setEmail(userDto.getEmail());
+				msg.setLink(url);
+				msg.setToken(tokens);
+				util.sendRabbit(msg);
+				//util.sendMail(userDto.getEmail(), "Email verifying", "http://localhost:8080/verify/" + tokens);
 		}
 	}
 	@SuppressWarnings("unused")
