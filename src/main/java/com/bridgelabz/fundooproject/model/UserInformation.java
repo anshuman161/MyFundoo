@@ -119,7 +119,8 @@ public class UserInformation
 	private List<NoteDetails> collabratorNoteList;
 
 
-	public void addColab(NoteDetails theNote) {
+	public void addColab(NoteDetails theNote) 
+	{
 		if (collabratorNoteList == null) {
 			collabratorNoteList = new ArrayList<>();
 		}

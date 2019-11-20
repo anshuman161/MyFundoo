@@ -30,7 +30,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 
 	private static final String TYPE = "notes";
 
-	@Autowired
+	@Autowired  
 	private RestHighLevelClient client;
 
 	@Autowired

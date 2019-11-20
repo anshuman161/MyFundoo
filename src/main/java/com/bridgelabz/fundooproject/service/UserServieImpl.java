@@ -90,7 +90,7 @@ public class UserServieImpl implements UserService
 			   	redisTemplate.opsForValue().set("token", token);
 			    redisTemplate.opsForValue().get(token);
 			   	System.out.println("redisinfo-------------"+redisTemplate.opsForValue().get(token));
-			   	System.out.println("   //////id/////////   "+token);
+			    	System.out.println("   //////id/////////   "+token);
 			   	return token;
 			}
 			else 

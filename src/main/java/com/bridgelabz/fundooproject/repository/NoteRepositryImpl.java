@@ -62,7 +62,7 @@ public class NoteRepositryImpl implements Note
 	public List<NoteDetails> fetchNotesByUserId(long id) 
 	{
 		Session session= entity.unwrap(Session.class);
-		Query query= session.createQuery("from NoteDetails where user_id=:id and is_trash=:false and is_archieve=:false");
+		Query query= session.createQuery("from NoteDetails  where user_id=:id and is_trash=:false and is_archieve=:false  ");
 		 query.setParameter("id", id);
 		 query.setParameter("false", false);
 		 query.setParameter("false", false);

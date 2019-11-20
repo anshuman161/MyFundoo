@@ -99,10 +99,7 @@ public class NoteController
 	{	    
     	
     	return servie.fetchAllNotes(token);
-			    
-		    
-		    
-		    
+		   
 	}
     @GetMapping("/changetrashtrue/{id}")
 	public ResponseEntity<Response> changeTrashTrue(@PathVariable long id, @RequestHeader String token)

@@ -75,6 +75,8 @@ UserInformation user =new UserInformation();
 user.setEmail("anshumanjoshi161@gmail.com");
 listofusers.add(user);
 when(userRepository.getListOfUser(email)).thenReturn(listofusers);
+//when repository line will come in service layer,
+//then mockito will return its own objects
 List<UserInformation> excepteddata=userRepository.getListOfUser(email);
 assertEquals(excepteddata,listofusers); 
 assertEquals(1, excepteddata.size());
@@ -91,7 +93,7 @@ assertEquals(1, excepteddata.size());
 //    public void testLoginUserSuccess() throws URISyntaxException
 //    {
 //        RestTemplate restTemplate = new RestTemplate();
-//        final String baseUrl = "http://localhost:+8085/user/login";
+//        final String baseUrl = "http://localhost:+8081/user/login";
 //        URI uri = new URI(baseUrl);
 //        UserLogIn user = new UserLogIn( "anshumanjoshi161@gmail.com","1234");
 //         
